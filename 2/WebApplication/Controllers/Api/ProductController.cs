@@ -17,6 +17,7 @@ namespace WebApplication.Controllers.Api
         [HttpPost]
         public IHttpActionResult Create(ProductEntity product)
         {
+            product.ProductNumber = DateTime.UtcNow.Ticks;
             MemoryStorage.Instance.AddOrUpdateRecord(product);
             return Ok(product);
         }
