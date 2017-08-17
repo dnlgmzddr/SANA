@@ -83,7 +83,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Api\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\Storage\DiskJsonStorageTest.cs" />
     <Compile Include="Services\Storage\MemoryStorageTest.cs" />
   </ItemGroup>
   <ItemGroup>

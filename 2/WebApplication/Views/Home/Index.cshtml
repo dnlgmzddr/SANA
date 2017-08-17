@@ -3,8 +3,9 @@
 }
 <div class="row">
     <div class="col-md-4">
-        <h2>Create new project</h2>
+        <h4>Create new project</h4>
         <form id="createProductForm">
+
             <div class="form-group">
                 <label for="TitleInput">Title</label>
                 <input type="text" class="form-control" id="TitleInput" placeholder="Title">
@@ -19,24 +20,42 @@
 
 
     <div class="col-md-8">
-        <button onclick="app.handleGetProducts()">Refresh</button>
 
-        <table class="table table-striped">
+        <h4> </h4>
+        <div class="row">
+            <form class="form-inline" onsubmit="return false;">
+                <div class="form-group">
+                    @*<label for="storage">Storage</label>*@
+                    <select class="form-control" name="storage" id="storage">
+                        <option>Memory</option>
+                        <option>Disk</option>
+                    </select>
+
+
+                </div>
+
+                <button class="btn btn-default" onclick="app.handleGetProducts()">Refresh</button>
+
+            </form>
+        </div>
+
+
+        <div class="row"><table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Number</th>
-                    <th>Price</th>
-                </tr>
+            <tr>
+                <th>Title</th>
+                <th>Number</th>
+                <th>Price</th>
+            </tr>
             </thead>
             <tbody id="productsGrid">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+            </tr>
             </tbody>
-        </table>
+        </table></div>
     </div>
 </div>
 

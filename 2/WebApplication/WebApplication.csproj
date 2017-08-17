@@ -162,6 +162,7 @@
     <Compile Include="Services\Entities\IEntity.cs" />
     <Compile Include="Services\Entities\ProductEntity.cs" />
     <Compile Include="Services\Storage\IStorage.cs" />
+    <Compile Include="Services\Storage\DiskJsonStorage.cs" />
     <Compile Include="Services\Storage\MemoryStorage.cs" />
   </ItemGroup>
   <ItemGroup>

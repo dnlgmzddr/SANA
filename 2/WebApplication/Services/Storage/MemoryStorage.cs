@@ -6,7 +6,7 @@ using WebApplication.Services.Entities;
 
 namespace WebApplication.Services.Storage
 {
-    public class MemoryStorage
+    public class MemoryStorage : IStorage
     {
 
         private static readonly Lazy<MemoryStorage> lazy =
