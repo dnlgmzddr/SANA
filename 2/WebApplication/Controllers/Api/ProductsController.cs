@@ -11,13 +11,13 @@ namespace WebApplication.Controllers.Api
 {
     [Route("api/products")]
 
-    public class ProductsController : ApiController
+    public class ProductsController : BaseApiController
     { 
 
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var products = MemoryStorage.Instance.GetRecords<ProductEntity>();
+            var products = GetStorage(Request).GetRecords<ProductEntity>();
             return Ok(products);
         }
     }

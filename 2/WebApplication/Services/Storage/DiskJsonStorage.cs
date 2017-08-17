@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using WebApplication.Services.Entities;
@@ -15,9 +16,11 @@ namespace WebApplication.Services.Storage
 
         public static DiskJsonStorage Instance => lazy.Value;
 
+        private string _file;
+
         private DiskJsonStorage()
         {
-
+            _file = Path.GetTempFileName();
 
             LoadRecords();
             
@@ -49,7 +52,7 @@ namespace WebApplication.Services.Storage
         private void PersistDatToDisk()
         {
             string json = JsonConvert.SerializeObject(_storage);
-            System.IO.File.WriteAllText("data.json", json);
+            System.IO.File.WriteAllText(_file, json);
         }
 
 
@@ -57,15 +60,15 @@ namespace WebApplication.Services.Storage
         {
             lock (_lock)
             {
-                if (!System.IO.File.Exists("data.json"))
+                if (!System.IO.File.Exists(_file))
                 {
                     _storage = new Dictionary<string, Dictionary<long, object>>();
                     return;
                 }
-                var rawData = System.IO.File.ReadAllText("data.json");
+                var rawData = System.IO.File.ReadAllText(_file);
 
 
-                _storage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<long, object>>>(rawData);
+                _storage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<long, object>>>(rawData) ?? new Dictionary<string, Dictionary<long, object>>();
             }
         }
 

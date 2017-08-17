@@ -2,10 +2,11 @@
 
 
     var handleAddProduct = function () {
-        addProduct();
+        addProduct().then(function (data) { drawSingleProductInGrid(data) });
     };
 
     var handleGetProducts = function () {
+
         getProducts().then(function (data) {
             drawProductsInGrid(data);
         });
@@ -15,34 +16,47 @@
     module.handleAddProduct = handleAddProduct;
     module.handleGetProducts = handleGetProducts;
 
+    return module;
 
 
 
-    var drawProductsInGrid = function (products) {
-        $("#productsGrid").html("");
+    function drawProductsInGrid(products) {
+        if (products.length === 0) return;
+        clearGrid();
         $.each(products, function (index, value) {
-            $("#productsGrid").append("<tr>" +
-                "<th scope='row'>" +
-                value.Title +
-                "</th ><td>" +
-                value.ProductNumber+
-                "</td><td>" +
-                value.Price
-                +"</td></tr >");
+            drawSingleProductInGrid(value);
         });
     }
 
-    var getProducts = function () {
+    function clearGrid() {
+        $("#productsGrid").html("");
+    }
+
+    function drawSingleProductInGrid(product) {
+        $("#productsGrid").append("<tr>" +
+            "<th scope='row'>" +
+            product.Title +
+            "</th ><td>" +
+            product.ProductNumber +
+            "</td><td> $" +
+            product.Price
+            + "</td></tr >");
+    }
+
+    function getProducts() {
         return $.ajax({
             url: "/api/products",
+            headers: { 'storage': $("#storage").val() },
             method: "GET"
         });
     }
 
-    var addProduct = function () {
+    function addProduct() {
         var newProduct = getProductFromDOM();
         return $.ajax({
             url: "/api/product",
+            headers: { 'storage': $("#storage").val() },
+
             method: "POST",
             data: newProduct
 
@@ -57,6 +71,6 @@
         };
     }
 
-    return module;
+    
 
 }());

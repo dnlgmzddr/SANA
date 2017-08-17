@@ -4,15 +4,15 @@
 <div class="row">
     <div class="col-md-4">
         <h4>Create new project</h4>
-        <form id="createProductForm">
+        <form id="createProductForm" onsubmit="return false;">
 
             <div class="form-group">
                 <label for="TitleInput">Title</label>
-                <input type="text" class="form-control" id="TitleInput" placeholder="Title">
+                <input type="text" required class="form-control" id="TitleInput" placeholder="Title">
             </div>
             <div class="form-group">
                 <label for="PriceInput">Price</label>
-                <input type="number" class="form-control" id="PriceInput" placeholder="Price">
+                <input type="number" required class="form-control" id="PriceInput" placeholder="Price">
             </div>
             <button type="submit" class="btn btn-default" onclick="app.handleAddProduct()">Submit</button>
         </form>
@@ -25,10 +25,10 @@
         <div class="row">
             <form class="form-inline" onsubmit="return false;">
                 <div class="form-group">
-                    @*<label for="storage">Storage</label>*@
+                    
                     <select class="form-control" name="storage" id="storage">
-                        <option>Memory</option>
-                        <option>Disk</option>
+                        <option value="memory" selected="selected">Memory</option>
+                        <option value="disk">Disk</option>
                     </select>
 
 
@@ -49,11 +49,6 @@
             </tr>
             </thead>
             <tbody id="productsGrid">
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
             </tbody>
         </table></div>
     </div>
